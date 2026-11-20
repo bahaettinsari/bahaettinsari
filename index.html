@@ -377,6 +377,35 @@ h2 { font-size: clamp(2.1rem, 5vw, 4rem); letter-spacing: -.055em; }
 .diagram span,.flow-node,.neva-channels span { background:#edf4f7; border-color:#8aabba; }
 .diagram i { background:var(--accent); }
 .contact { background:radial-gradient(ellipse at 15% 100%,#e2eff4 0,transparent 70%); }
+
+:root { color-scheme:dark; --bg:#101015; --surface:#191721; --ink:#f8f5ff; --muted:#c6bfd1; --accent:#d8c3ff; --orange:#ffc29b; --line:#51475d; }
+.top { background:#101015f2; }
+.story .hero { background:var(--bg); }
+.position,.intro,.story-copy p:last-child,.participant-journey,.has-story .scroll-cue { color:var(--muted); }
+.brand span,.contact-link,.button { border-color:#8e79a6; }
+.primary { color:#15111c; background:var(--accent); border-color:var(--accent); }
+.primary:hover { background:#eadcff; box-shadow:none; }
+.project,.project:hover,.project:focus-within { background:var(--surface); border-color:var(--line); }
+.diagram { background:#211b30; }
+.diagram span,.neva-channels span { background:#282037; border-color:#8e79a6; }
+.campaign-ad { background:#382a52; }
+.campaign-ad-note { color:#e6d9f9; }
+.neva-result { background:#231d2c; border-color:#a67c69; }
+.neva-result span { color:var(--ink); }
+.metrics div { border-color:#8e79a6; }
+.contact { background:radial-gradient(ellipse at 15% 100%,#281f38,transparent 70%); }
+.stock-board { width:min(94%,36rem); color:var(--ink); padding:clamp(.7rem,2.5vw,1.65rem); background:radial-gradient(ellipse at 65% 0%,#322544,#191621 68%); border:1px solid #8e79a6; border-radius:1.05rem; box-shadow:0 18px 65px #0008; }
+.stock-header { display:flex; align-items:center; justify-content:space-between; gap:.4rem; font-size:.82rem; font-weight:700; }
+.stock-header span:last-child { color:var(--orange); white-space:nowrap; }
+.stock-caption { color:var(--muted); font-size:.76rem; margin:.25rem 0 .9rem; }
+.stock-chain { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.35rem; }
+.stock-node { display:grid; gap:.22rem; padding:.35rem; text-align:center; border:1px solid #766487; border-radius:.45rem; background:#17141e; }
+.stock-icon { color:var(--accent); font-size:clamp(1.05rem,3vw,2rem); line-height:1.1; }
+.stock-node b { font-size:clamp(.65rem,1.4vw,.95rem); }
+.stock-node small { color:var(--muted); font-size:clamp(.56rem,1vw,.73rem); line-height:1.25; }
+.stock-track { position:relative; height:2px; background:#8e79a6; margin:.95rem 16.67% .25rem; }
+.stock-track::before { content:""; position:absolute; inset:0 auto 0 0; width:var(--stock-progress,0%); background:var(--orange); }
+.stock-track i { position:absolute; left:var(--stock-progress,0%); top:50%; width:.65rem; aspect-ratio:1; background:var(--orange); border:1px solid #16121b; transform:translate(-50%,-50%) rotate(45deg); }
 </style>
 </head>
 <body>
@@ -422,16 +451,17 @@ h2 { font-size: clamp(2.1rem, 5vw, 4rem); letter-spacing: -.055em; }
     </div>
   </div>
   <div class="visual-layer visual-commerce">
-    <div class="panel flow">
-      <div class="panel-label">E-COMMERCE-INTEGRATION · IN ARBEIT</div>
-      <div class="flow-track">
-        <div class="flow-node"><i></i><span>Warenwirtschaft<small>Lagerbestand</small></span></div>
-        <div class="flow-node"><i></i><span>REST API<small>Datenaustausch</small></span></div>
-        <div class="flow-node"><i></i><span>Shopify<small>Onlineshop</small></span></div>
-        <span class="flow-signal"></span>
-      </div>
+  <div class="stock-board">
+    <div class="stock-header"><span>Shopify × Warenwirtschaft</span><span>In Arbeit</span></div>
+    <div class="stock-caption">Beispiel: Eine Bestandsänderung im Warenlager</div>
+    <div class="stock-chain">
+      <div class="stock-node"><div class="stock-icon" aria-hidden="true">▦</div><b>Warenlager</b><small>Bestand erfassen</small></div>
+      <div class="stock-node"><div class="stock-icon" aria-hidden="true">⇄</div><b>REST API</b><small>Daten übertragen</small></div>
+      <div class="stock-node"><div class="stock-icon" aria-hidden="true">▤</div><b>Shopify</b><small>Bestand anzeigen</small></div>
     </div>
+    <div class="stock-track" aria-hidden="true"><i></i></div>
   </div>
+</div>
 </div>
       <div class="shell hero-inner" data-scene>
         <p class="eyebrow"><span></span> HESSEN · DEUTSCHLAND</p>
@@ -595,7 +625,7 @@ updateScroll();
     stage.style.setProperty('--scene-c',commerce.toFixed(3));
     stage.style.setProperty('--shift-c',((1-commerce)*55).toFixed(1)+'px');
     stage.style.setProperty('--scale-c',(.94+.06*commerce).toFixed(3));
-    stage.style.setProperty('--flow-position',(15+72*smooth(progress,.81,.995)).toFixed(1)+'%');
+    stage.style.setProperty('--stock-progress',(100*smooth(progress,.82,.995)).toFixed(1)+'%');
     stage.style.setProperty('--cue',(1-smooth(progress,0,.13)).toFixed(3));
   }
 
