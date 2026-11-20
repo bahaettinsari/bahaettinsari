@@ -375,33 +375,33 @@ h2 { font-size: clamp(2.1rem, 5vw, 4rem); letter-spacing: -.055em; }
 .diagram span,.flow-node,.neva-channels span { background:#edf4f7; border-color:#8aabba; }
 .diagram i { background:var(--accent); }
 
-:root { color-scheme:dark; --bg:#0a1220; --surface:#101d31; --ink:#f5f8ff; --muted:#c2cde0; --accent:#c4d8f5; --orange:#f1cc76; --line:#40516b; }
-.top { background:#0a1220f2; }
+:root { color-scheme:light; --bg:#ffffff; --surface:#f4f7fb; --ink:#142033; --muted:#475569; --accent:#1656a3; --orange:#1656a3; --line:#d5deea; }
+.top { background:#fffffff5; }
 .story .hero { background:var(--bg); }
 .position,.intro,.story-copy p:last-child,.participant-journey,.has-story .scroll-cue { color:var(--muted); }
-.brand span,.contact-link,.button { border-color:#6f86a8; }
-.primary { color:#0a1220; background:var(--accent); border-color:var(--accent); }
-.primary:hover { background:#e0eaff; box-shadow:none; }
+.brand span,.contact-link,.button { border-color:#91a6c1; }
+.primary { color:#ffffff; background:var(--accent); border-color:var(--accent); }
+.primary:hover { background:#124584; box-shadow:none; }
 .project,.project:hover,.project:focus-within { background:var(--surface); border-color:var(--line); }
-.diagram { background:#14243d; }
-.diagram span,.neva-channels span { background:#182b47; border-color:#6f86a8; }
-.campaign-ad { background:#152b49; }
+.diagram { background:#e9f1fa; }
+.diagram span,.neva-channels span { background:#e9f1fa; border-color:#91a6c1; }
+.campaign-ad { background:#18365b; }
 .campaign-ad-note { color:#dbe7f8; }
-.neva-result { background:#13233a; border-color:#a68645; }
+.neva-result { background:#f3f7fc; border-color:#9db3ce; }
 .neva-result span { color:var(--ink); }
-.metrics div { border-color:#6f86a8; }
-.stock-board { width:min(94%,36rem); color:var(--ink); padding:clamp(.7rem,2.5vw,1.65rem); background:radial-gradient(ellipse at 65% 0%,#203858,#101b2c 68%); border:1px solid #6f86a8; border-radius:1.05rem; box-shadow:0 18px 65px #0008; }
+.metrics div { border-color:#91a6c1; }
+.stock-board { width:min(94%,36rem); color:var(--ink); padding:clamp(.7rem,2.5vw,1.65rem); background:radial-gradient(ellipse at 65% 0%,#e6effb,#f5f8fc 68%); border:1px solid #91a6c1; border-radius:1.05rem; box-shadow:0 18px 65px #19365425; }
 .stock-header { display:flex; align-items:center; justify-content:space-between; gap:.4rem; font-size:.82rem; font-weight:700; }
 .stock-header span:last-child { color:var(--orange); white-space:nowrap; }
 .stock-caption { color:var(--muted); font-size:.76rem; margin:.25rem 0 .9rem; }
 .stock-chain { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.35rem; }
-.stock-node { display:grid; gap:.22rem; padding:.35rem; text-align:center; border:1px solid #536987; border-radius:.45rem; background:#0d192b; }
+.stock-node { display:grid; gap:.22rem; padding:.35rem; text-align:center; border:1px solid #a5b7cf; border-radius:.45rem; background:#ffffff; }
 .stock-icon { color:var(--accent); font-size:clamp(1.05rem,3vw,2rem); line-height:1.1; }
 .stock-node b { font-size:clamp(.65rem,1.4vw,.95rem); }
 .stock-node small { color:var(--muted); font-size:clamp(.56rem,1vw,.73rem); line-height:1.25; }
-.stock-track { position:relative; height:2px; background:#6f86a8; margin:.95rem 16.67% .25rem; }
+.stock-track { position:relative; height:2px; background:#91a6c1; margin:.95rem 16.67% .25rem; }
 .stock-track::before { content:""; position:absolute; inset:0 auto 0 0; width:var(--stock-progress,0%); background:var(--orange); }
-.stock-track i { position:absolute; left:var(--stock-progress,0%); top:50%; width:.65rem; aspect-ratio:1; background:var(--orange); border:1px solid #0a1220; transform:translate(-50%,-50%) rotate(45deg); }
+.stock-track i { position:absolute; left:var(--stock-progress,0%); top:50%; width:.65rem; aspect-ratio:1; background:var(--orange); border:1px solid #ffffff; transform:translate(-50%,-50%) rotate(45deg); }
 </style>
 </head>
 <body>
@@ -448,12 +448,12 @@ h2 { font-size: clamp(2.1rem, 5vw, 4rem); letter-spacing: -.055em; }
   </div>
   <div class="visual-layer visual-commerce">
   <div class="stock-board">
-    <div class="stock-header"><span>Shopify × Warenwirtschaft</span><span>In Arbeit</span></div>
+    <div class="stock-header"><span>Onlineshop × Warenwirtschaft</span><span>In Arbeit</span></div>
     <div class="stock-caption">Beispiel: Eine Bestandsänderung im Warenlager</div>
     <div class="stock-chain">
       <div class="stock-node"><div class="stock-icon" aria-hidden="true">▦</div><b>Warenlager</b><small>Bestand erfassen</small></div>
       <div class="stock-node"><div class="stock-icon" aria-hidden="true">⇄</div><b>REST API</b><small>Daten übertragen</small></div>
-      <div class="stock-node"><div class="stock-icon" aria-hidden="true">▤</div><b>Shopify</b><small>Bestand anzeigen</small></div>
+      <div class="stock-node"><div class="stock-icon" aria-hidden="true">▤</div><b>Onlineshop</b><small>Bestand anzeigen</small></div>
     </div>
     <div class="stock-track" aria-hidden="true"><i></i></div>
   </div>
@@ -484,7 +484,7 @@ h2 { font-size: clamp(2.1rem, 5vw, 4rem); letter-spacing: -.055em; }
       <div class="shell hero-inner story-copy" data-scene>
         <p class="eyebrow">E-Commerce &amp; Automatisierung</p>
         <h2>Vom Shop <span>bis ins Lager.</span></h2>
-        <p>Shopify, Warenwirtschaft und Lieferantendaten über Schnittstellen verbinden.</p>
+        <p>Onlineshop, Warenwirtschaft und Lieferantendaten über Schnittstellen verbinden.</p>
       </div>
       <span class="scroll-cue" aria-hidden="true">Scrollen</span>
     </section></div>
@@ -493,8 +493,8 @@ h2 { font-size: clamp(2.1rem, 5vw, 4rem); letter-spacing: -.055em; }
         <header class="section-heading"><h2>Ausgewählte Projekte</h2><p>Eigene Arbeiten in E-Commerce und Automatisierung.</p></header>
         <div class="projects">
           <article class="project featured">
-            <div class="diagram" aria-hidden="true"><span>SHOPIFY</span><i></i><span>API</span><i></i><span>ERP</span></div>
-            <div class="project-body"><p class="eyebrow">Integration · In Arbeit</p><h3>Shopify × Warenwirtschaft</h3><p>Ein Onlineshop mit API-Anbindung an ein Warenwirtschaftssystem.</p><details><summary>Integration ansehen</summary><p>Die API bildet die Verbindung zwischen dem Shopify-Shop und dem System, das die Warenwirtschaft verwaltet.</p></details></div>
+            <div class="diagram" aria-hidden="true"><span>SHOP</span><i></i><span>API</span><i></i><span>ERP</span></div>
+            <div class="project-body"><p class="eyebrow">Integration · In Arbeit</p><h3>Onlineshop × Warenwirtschaft</h3><p>Ein Onlineshop mit API-Anbindung an ein Warenwirtschaftssystem.</p><details><summary>Integration ansehen</summary><p>Die API bildet die Verbindung zwischen dem Shopsystem und dem System, das die Warenwirtschaft verwaltet.</p></details></div>
           </article>
           <article class="project"><div class="project-body"><p class="eyebrow">Softwareentwicklung</p><h3>ERP für den Onlinehandel</h3><p>Eigenentwickeltes Frontend und Backend für Abläufe vom Lagerbestand bis zum Rechnungsversand.</p><details><summary>Funktionsumfang ansehen</summary><p>Die Oberfläche und das Backend decken zwei zentrale Aufgaben ab: Lagerbestände verwalten und Rechnungen versenden.</p></details></div></article>
           <article class="project"><div class="project-body"><p class="eyebrow">Datenintegration</p><h3>Preisvergleich für den Einkauf</h3><p>Lieferanten-APIs liefern Einkaufspreise, die sich anhand von Barcodes vergleichen lassen.</p><details><summary>Ablauf ansehen</summary><p>Der Barcode dient als gemeinsamer Schlüssel, um Artikel über mehrere Lieferanten hinweg zuzuordnen und ihre Einkaufspreise gegenüberzustellen.</p></details></div></article>
@@ -520,7 +520,7 @@ h2 { font-size: clamp(2.1rem, 5vw, 4rem); letter-spacing: -.055em; }
   </section>
       <section class="section" id="kompetenzen">
         <header class="section-heading"><h2>Kompetenzen</h2></header>
-        <div class="skills"><span class="skill">Meta Ads</span><span class="skill">Google Ads</span><span class="skill">Social-Media-Strategie</span><span class="skill">Content-Marketing</span><span class="skill">Shopify</span><span class="skill">REST APIs</span><span class="skill">Python</span><span class="skill">SQL</span><span class="skill">Docker</span><span class="skill">Canva</span><span class="skill">CapCut</span><span class="skill">PowerShell</span><span class="skill">Deutsch B2 (telc)</span><span class="skill">Englisch</span><span class="skill">Türkisch</span></div>
+        <div class="skills"><span class="skill">Meta Ads</span><span class="skill">Google Ads</span><span class="skill">Social-Media-Strategie</span><span class="skill">Content-Marketing</span><span class="skill">E-Commerce-Plattformen</span><span class="skill">REST APIs</span><span class="skill">Python</span><span class="skill">SQL</span><span class="skill">Docker</span><span class="skill">Canva</span><span class="skill">CapCut</span><span class="skill">PowerShell</span><span class="skill">Deutsch B2 (telc)</span><span class="skill">Englisch</span><span class="skill">Türkisch</span></div>
       </section>
       <section class="section contact" id="kontakt">
         <header class="section-heading"><h2>Kontakt</h2><p>Für Stellenangebote, Projektanfragen und fachlichen Austausch.</p></header>
