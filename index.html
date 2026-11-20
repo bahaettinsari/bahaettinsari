@@ -402,6 +402,7 @@ h2 { font-size: clamp(2.1rem, 5vw, 4rem); letter-spacing: -.055em; }
 .stock-track { position:relative; height:2px; background:#91a6c1; margin:.95rem 16.67% .25rem; }
 .stock-track::before { content:""; position:absolute; inset:0 auto 0 0; width:var(--stock-progress,0%); background:var(--orange); }
 .stock-track i { position:absolute; left:var(--stock-progress,0%); top:50%; width:.65rem; aspect-ratio:1; background:var(--orange); border:1px solid #ffffff; transform:translate(-50%,-50%) rotate(45deg); }
+#ki > p { max-width: 48rem; color: var(--muted); margin-bottom: 1.5rem; }
 </style>
 </head>
 <body>
@@ -410,7 +411,7 @@ h2 { font-size: clamp(2.1rem, 5vw, 4rem); letter-spacing: -.055em; }
     <div class="shell top-inner">
       <a class="brand" href="#start"><span>BS</span> Bahaettin Sari</a>
       <nav aria-label="Hauptnavigation">
-        <a href="#projekte">Projekte</a><a href="#profil">Profil</a><a href="#erfahrung">Erfahrung</a><a href="#ausbildung">Ausbildung</a>
+        <a href="#projekte">Projekte</a><a href="#ki">KI</a><a href="#profil">Profil</a><a href="#erfahrung">Erfahrung</a><a href="#ausbildung">Ausbildung</a>
       </nav>
       <a class="contact-link" href="#kontakt">Kontakt</a>
     </div>
@@ -499,6 +500,21 @@ h2 { font-size: clamp(2.1rem, 5vw, 4rem); letter-spacing: -.055em; }
           <article class="project"><div class="project-body"><p class="eyebrow">Softwareentwicklung</p><h3>ERP für den Onlinehandel</h3><p>Eigenentwickeltes Frontend und Backend für Abläufe vom Lagerbestand bis zum Rechnungsversand.</p><details><summary>Funktionsumfang ansehen</summary><p>Die Oberfläche und das Backend decken zwei zentrale Aufgaben ab: Lagerbestände verwalten und Rechnungen versenden.</p></details></div></article>
           <article class="project"><div class="project-body"><p class="eyebrow">Datenintegration</p><h3>Preisvergleich für den Einkauf</h3><p>Lieferanten-APIs liefern Einkaufspreise, die sich anhand von Barcodes vergleichen lassen.</p><details><summary>Ablauf ansehen</summary><p>Der Barcode dient als gemeinsamer Schlüssel, um Artikel über mehrere Lieferanten hinweg zuzuordnen und ihre Einkaufspreise gegenüberzustellen.</p></details></div></article>
         </div>
+      </section>
+      <section class="section" id="ki">
+        <header class="section-heading"><h2>Angewandte KI</h2><p>Für Marketing, Analyse und Softwareentwicklung.</p></header>
+        <p>Ich nutze KI, um Kampagnendaten auszuwerten, Anzeigenvarianten zu entwickeln und A/B-Tests vorzubereiten. Aus den Ergebnissen erstelle ich Reports mit Handlungsempfehlungen. In der Softwareentwicklung setze ich KI für Prototypen, Automatisierung, Fehlersuche und Code-Reviews ein. Ergebnisse und Code prüfe ich vor dem Einsatz.</p>
+        <article class="project">
+          <div class="project-body">
+            <p class="eyebrow">Demo mit Beispieldaten</p>
+            <h3>Vom Anzeigenvergleich zum Testplan</h3>
+            <p>Ein Beispiel dafür, wie ich KI-gestützte Analysen prüfe und in Entscheidungen übersetze.</p>
+            <details open><summary>1. Daten auswerten</summary><p>Anzeige A: 180 Klicks bei 12.000 Impressionen (1,5 %). Anzeige B: 240 Klicks bei 12.000 Impressionen (2,0 %). Ich prüfe die berechneten Klickraten und ob die Ausspielung vergleichbar war.</p></details>
+            <details><summary>2. Hypothese ableiten</summary><p>Eine konkrete Nutzenbotschaft könnte mehr qualifizierte Anfragen auslösen. Mit KI entwerfe ich Textvarianten und prüfe, ob sie zum Angebot und zur Marke passen.</p></details>
+            <details><summary>3. A/B-Test vorbereiten</summary><p>Im nächsten Test ändere ich nur die Überschrift. Ich verteile die Zielgruppe zufällig auf beide Varianten und definiere die Kosten pro qualifizierter Anfrage als primäre Kennzahl.</p></details>
+            <details><summary>4. Ergebnis berichten</summary><p>B hat im Beispiel die höhere Klickrate. Ohne Daten zu qualifizierten Anfragen bleibt offen, welche Variante günstiger Kundschaft gewinnt. Empfehlung: Budget erst nach dem geplanten Test umverteilen.</p></details>
+          </div>
+        </article>
       </section>
       <section class="section profile" id="profil">
         <header class="section-heading"><h2>Profil</h2><p>Social Media, Performance-Marketing und technische Integration.</p></header>
