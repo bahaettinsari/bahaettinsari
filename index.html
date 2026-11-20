@@ -354,6 +354,11 @@ h2 { font-size: clamp(2.1rem, 5vw, 4rem); letter-spacing: -.055em; }
 .audience-reaction { opacity:calc((var(--audience-opacity,.65) - .65) * 2.86); }
 .neva-result { bottom:4.6rem; }
 @media(max-width:700px) { .neva-art { min-height:0; } }
+
+/* Fade each mobile heading separately to keep it legible. */
+@media (max-width: 700px) {
+  .has-story [data-scene] { opacity: clamp(0, calc(2 * var(--alpha, 1) - 1), 1); }
+}
 </style>
 </head>
 <body>
