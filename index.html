@@ -173,7 +173,7 @@ h2 { font-size: clamp(2.1rem, 5vw, 4rem); letter-spacing: -.055em; }
   .space::after { background: linear-gradient(90deg,#080810 0%,#0808109e 58%,transparent),linear-gradient(0deg,#080810 3%,transparent 75%); }
   .diagram { min-height: 10rem; }
 }
-.story { position:relative; scroll-margin-top:var(--top,76px); }
+.story { position:relative; scroll-margin-top:0px; }
 .story-copy h2 { max-width:10ch; font-size:clamp(2.55rem,7.1vw,7.5rem); line-height:.98; }
 .story-copy h2 span { color:#c9b9ff; }
 .story-copy p:last-child { margin-top:1rem; max-width:28rem; color:#ded9ee; }
@@ -183,7 +183,7 @@ h2 { font-size: clamp(2.1rem, 5vw, 4rem); letter-spacing: -.055em; }
 .scroll-cue { display:none; }
 @media (prefers-reduced-motion:no-preference) and (min-height:540px) {
   .has-story .story { height:300svh; }
-  .has-story .story .hero { position:sticky; top:var(--top,76px); height:calc(100svh - var(--top,76px)); }
+  .has-story .story .hero { position:sticky; top:0px; height:100svh; }
   .has-story .hero-inner { min-height:0; height:100%; padding-block:1rem; }
   .has-story .story-copy { position:absolute; inset-block:0; left:50%; transform:translateX(-50%); }
   .has-story [data-scene]:not([data-active]) { pointer-events:none; }
@@ -461,16 +461,6 @@ h2 { font-size: clamp(2.1rem, 5vw, 4rem); letter-spacing: -.055em; }
 </head>
 <body>
   <a class="skip" href="#main">Zum Inhalt</a>
-  <header class="top">
-    <div class="shell top-inner">
-      <a class="brand" href="#start">Bahaettin Sari</a>
-      <nav aria-label="Hauptnavigation">
-        <a href="#projekte">Projekte</a><a href="#ki">KI-Demo</a><a href="#erfahrung">Erfahrung</a>
-      </nav>
-      <a class="contact-link" href="#kontakt">Kontakt</a>
-    </div>
-    <div class="progress" aria-hidden="true"></div>
-  </header>
   <main id="main">
     <div class="story" id="start"><section class="hero" aria-label="Einführung">
       <div class="work-visual" aria-hidden="true">
@@ -651,7 +641,7 @@ updateScroll();
 (() => {
   const track = document.querySelector('.story');
   const stage = track.querySelector('.hero');
-  const header = document.querySelector('.top');
+
   const scenes = [...stage.querySelectorAll('[data-scene]')];
   const motion = matchMedia('(prefers-reduced-motion:no-preference) and (min-height:540px)');
   const clamp = n => Math.min(1,Math.max(0,n));
@@ -659,14 +649,14 @@ updateScroll();
     const t = clamp((n-start)/(end-start));
     return t*t*(3-2*t);
   };
-  let top = 0;
+
   let frame = 0;
 
   function render() {
     frame = 0;
     if (!motion.matches) return;
     const travel = track.offsetHeight - stage.offsetHeight;
-    const progress = clamp((top-track.getBoundingClientRect().top)/Math.max(1,travel));
+    const progress = clamp((-track.getBoundingClientRect().top)/Math.max(1,travel));
     const fades = [[.07,.19],[.28,.42],[.52,.66],[.78,.91]]
       .map(([start,end]) => smooth(progress,start,end));
     const alpha = scenes.map((_,i) => (fades[i-1] ?? 1)*(1-(fades[i] ?? 0)));
@@ -705,8 +695,8 @@ updateScroll();
   }
 
   function resize() {
-    top = header.offsetHeight;
-    track.style.setProperty('--top',top+'px');
+
+
     document.documentElement.classList.toggle('has-story',motion.matches);
     if (!motion.matches) scenes.forEach(scene => { scene.inert = false; });
     render();
@@ -773,36 +763,6 @@ updateScroll();
       button.disabled = false;
     },650);
   });
-})();
-</script>
-<script>
-(() => {
-  const header = document.querySelector('.top');
-  const links = [...header.querySelectorAll('nav a, .contact-link')];
-  const sections = [...document.querySelectorAll('main .shell > section[id]')];
-  let scheduled = false;
-  function updateCurrent() {
-    scheduled = false;
-    const marker = header.getBoundingClientRect().bottom + 28;
-    const atEnd = Math.ceil(scrollY + innerHeight) >= document.documentElement.scrollHeight - 2;
-    const current = atEnd ? 'kontakt' : sections.find(section => {
-      const box = section.getBoundingClientRect();
-      return box.top <= marker && box.bottom > marker;
-    })?.id;
-    for (const link of links) {
-      if (link.hash === '#' + current) link.setAttribute('aria-current','location');
-      else link.removeAttribute('aria-current');
-    }
-  }
-  function schedule() {
-    if (scheduled) return;
-    scheduled = true;
-    requestAnimationFrame(updateCurrent);
-  }
-  addEventListener('scroll',schedule,{passive:true});
-  addEventListener('resize',schedule);
-  addEventListener('hashchange',schedule);
-  updateCurrent();
 })();
 </script>
 </body>
