@@ -434,6 +434,19 @@ h2 { font-size: clamp(2.1rem, 5vw, 4rem); letter-spacing: -.055em; }
 .sync-state { color:#c5e0ff; }
 .sync-illustration[data-sync="sending"] .sync-pipeline li:nth-child(2),.sync-illustration[data-sync="done"] .sync-pipeline li:nth-child(3) { border-color:#b8d7ff; background:#214972; }
 @media(max-width:380px) { .sync-illustration { padding:1rem; } .sync-pipeline li { grid-template-columns:1.7rem minmax(0,1fr) auto; font-size:.86rem; } }
+.ad-lab { margin-top:1rem; display:grid; gap:.85rem; }
+.ad-lab-head { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:.5rem; }
+.ad-lab-head .button { cursor:pointer; }
+.ad-lab .ab-grid { margin:0; }
+.ad-lab fieldset { background:#f4f8fe; border-color:#c5d6ed; padding:1rem; }
+.ad-lab legend { padding:0 .4rem; color:#174a83; font-weight:700; }
+.ad-lab label { color:#344761; font-size:.85rem; }
+.ad-lab output { margin-top:.7rem; font-size:.86rem; color:#18365b; }
+.ad-bar { margin-top:.65rem; height:.38rem; border-radius:1rem; background:#d6e3f3; overflow:hidden; }
+.ad-bar i { display:block; height:100%; width:var(--ad-share,0%); background:#1656a3; }
+.ad-report { padding:1rem; background:#102640; color:#e8f2ff; border-radius:.65rem; }
+.ad-report h4 { color:white; margin:0 0 .45rem; font-family:var(--display); }
+.ad-report p { margin:0; }
 </style>
 </head>
 <body>
@@ -545,10 +558,14 @@ h2 { font-size: clamp(2.1rem, 5vw, 4rem); letter-spacing: -.055em; }
             <p class="eyebrow">Demo mit Beispieldaten</p>
             <h3>Vom Anzeigenvergleich zum Testplan</h3>
             <p>Ein Beispiel dafür, wie ich KI-gestützte Analysen prüfe und in Entscheidungen übersetze.</p>
-            <div class="demo-controls" id="anzeigen-demo"><p>Je 12.000 Impressionen. Ändere die Klicks und qualifizierten Anfragen.</p><div class="ab-grid"><fieldset data-ad><legend>Anzeige A</legend><label>Klicks <input type="number" min="0" max="12000" value="180" data-clicks></label><label>Qualifizierte Anfragen <input type="number" min="0" max="180" value="18" data-leads></label><output></output></fieldset><fieldset data-ad><legend>Anzeige B</legend><label>Klicks <input type="number" min="0" max="12000" value="240" data-clicks></label><label>Qualifizierte Anfragen <input type="number" min="0" max="240" value="12" data-leads></label><output></output></fieldset></div><p id="anzeigen-status" role="status"></p></div><details><summary>1. Daten auswerten</summary><p>Anzeige A: 180 Klicks bei 12.000 Impressionen (1,5 %). Anzeige B: 240 Klicks bei 12.000 Impressionen (2,0 %). Ich prüfe die berechneten Klickraten und ob die Ausspielung vergleichbar war.</p></details>
-            <details><summary>2. Hypothese ableiten</summary><p>Eine konkrete Nutzenbotschaft könnte mehr qualifizierte Anfragen auslösen. Mit KI entwerfe ich Textvarianten und prüfe, ob sie zum Angebot und zur Marke passen.</p></details>
-            <details><summary>3. A/B-Test vorbereiten</summary><p>Im nächsten Test ändere ich nur die Überschrift. Ich verteile die Zielgruppe zufällig auf beide Varianten und definiere die Kosten pro qualifizierter Anfrage als primäre Kennzahl.</p></details>
-            <details><summary>4. Ergebnis berichten</summary><p>B hat im Beispiel die höhere Klickrate. Ohne Daten zu qualifizierten Anfragen bleibt offen, welche Variante günstiger Kundschaft gewinnt. Empfehlung: Budget erst nach dem geplanten Test umverteilen.</p></details>
+            <div class="ad-lab" id="anzeigen-demo">
+  <div class="ad-lab-head"><p>Je <strong>12.000 Impressionen</strong> pro Anzeige</p><button type="button" class="button" data-ad-reset>Beispiel zurücksetzen</button></div>
+  <div class="ab-grid">
+    <fieldset data-ad><legend>Anzeige A</legend><label>Klicks <input type="number" min="0" max="12000" value="180" data-clicks></label><label>Qualifizierte Anfragen <input type="number" min="0" max="180" value="18" data-leads></label><output></output><div class="ad-bar" aria-hidden="true"><i></i></div></fieldset><fieldset data-ad><legend>Anzeige B</legend><label>Klicks <input type="number" min="0" max="12000" value="240" data-clicks></label><label>Qualifizierte Anfragen <input type="number" min="0" max="240" value="12" data-leads></label><output></output><div class="ad-bar" aria-hidden="true"><i></i></div></fieldset>
+  </div>
+  <div class="ad-report"><h4>Entscheidungsbericht</h4><p id="anzeigen-status" role="status"></p></div>
+  <details><summary>So würde ich den nächsten Test aufsetzen</summary><p>Nur die Überschrift ändern, die Zielgruppe zufällig aufteilen und vorab Kosten pro qualifizierter Anfrage als primäre Kennzahl festlegen. KI unterstützt bei Varianten und Auswertung. Ich prüfe Datenqualität und Empfehlung vor der Entscheidung.</p></details>
+</div>
           </div>
         </article>
       </section>
@@ -706,13 +723,23 @@ updateScroll();
       const l = Math.min(c,Math.max(0,Math.trunc(Number(leads.value))));
       leads.max = c;
       if (Number(leads.value) > c) leads.value = c;
-      card.querySelector('output').value = 'Klickrate: ' + percent.format(c/12000) + ' · Anfragen pro Klick: ' + (c ? percent.format(l/c) : '–');
+      card.querySelector('output').value = 'Klickrate: ' + percent.format(c/12000) + ' · Anfragen je Impression: ' + percent.format(l/12000);
       return {clicks:c,leads:l};
     });
-    const best = key => values[0][key] === values[1][key] ? 'Gleichstand' : values[0][key] > values[1][key] ? 'Anzeige A' : 'Anzeige B';
-    document.querySelector('#anzeigen-status').textContent = 'Mehr Klicks: ' + best('clicks') + '. Mehr qualifizierte Anfragen: ' + best('leads') + '.';
+    const maxLeads = Math.max(1, ...values.map(row => row.leads));
+    cards.forEach((card,i) => card.style.setProperty('--ad-share',(100*values[i].leads/maxLeads)+'%'));
+    const [a,b] = values;
+    const lead = a.leads === b.leads
+      ? 'Beide Anzeigen erzielen gleich viele qualifizierte Anfragen (' + a.leads + ').'
+      : (a.leads > b.leads ? 'Anzeige A' : 'Anzeige B') + ' erzielt ' + Math.abs(a.leads-b.leads) + ' qualifizierte Anfragen mehr.';
+    const clicks = a.clicks === b.clicks ? ' Die Klickzahlen sind gleich.' : ' Mehr Klicks: Anzeige ' + (a.clicks > b.clicks ? 'A.' : 'B.');
+    document.querySelector('#anzeigen-status').textContent = lead + clicks + ' Vor einer Budgetentscheidung: Werbekosten und Vergleichbarkeit der Ausspielung prüfen.';
   }
   demo.addEventListener('input',updateAds);
+  demo.querySelector('[data-ad-reset]').addEventListener('click',() => {
+    demo.querySelectorAll('input').forEach(input => { input.value = input.defaultValue; });
+    updateAds();
+  });
   updateAds();
   const button = document.querySelector('#lager-aktion');
   const warehouse = document.querySelector('#lager-zahl');
