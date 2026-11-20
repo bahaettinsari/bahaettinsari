@@ -421,6 +421,19 @@ h2 { font-size: clamp(2.1rem, 5vw, 4rem); letter-spacing: -.055em; }
 .scroll-cue::before { width:.56rem; height:.56rem; background:none; border:solid currentColor; border-width:0 2px 2px 0; transform:rotate(45deg); }
 @media (max-width:700px) { .has-story .hero-inner[data-scene]:not(.story-copy) { justify-content:center; } }
 .hero-specialties { margin-top:.65rem; color:var(--muted); font-size:clamp(.88rem,2vw,1rem); text-wrap:balance; }
+
+.sync-illustration { margin:0; padding:clamp(1.25rem,4vw,2.6rem); min-width:0; display:grid; align-content:center; gap:1.1rem; color:#f5f9ff; background:radial-gradient(ellipse at 95% 0%,#255481,transparent 72%),#102640; }
+.sync-illustration figcaption strong { display:block; font:600 clamp(1.7rem,3.5vw,2.65rem)/1.05 var(--display); letter-spacing:-.04em; }
+.sync-kicker { display:block; margin-bottom:.45rem; font-size:.69rem; font-weight:700; letter-spacing:.12em; color:#b9d5f7; }
+.sync-pipeline { display:grid; gap:.7rem; list-style:none; padding:0; margin:0; }
+.sync-pipeline li { position:relative; display:grid; grid-template-columns:2rem minmax(0,1fr) auto; align-items:center; gap:.55rem; padding:.55rem; border:1px solid #6480a5; border-radius:.6rem; background:#122b48; }
+.sync-pipeline li + li::before { content:"↓"; position:absolute; top:-.8rem; left:1.2rem; z-index:1; color:#d3e6ff; font:700 .9rem/1 system-ui; }
+.sync-index { display:grid; place-items:center; width:1.8rem; height:1.8rem; border-radius:.45rem; background:#294b70; color:#e3eeff; font-size:.71rem; font-weight:700; }
+.sync-pipeline small { display:block; font-size:.72rem; color:#c8d9ee; line-height:1.2; }
+.sync-value { font-size:.73rem; font-variant-numeric:tabular-nums; white-space:nowrap; }
+.sync-state { color:#c5e0ff; }
+.sync-illustration[data-sync="sending"] .sync-pipeline li:nth-child(2),.sync-illustration[data-sync="done"] .sync-pipeline li:nth-child(3) { border-color:#b8d7ff; background:#214972; }
+@media(max-width:380px) { .sync-illustration { padding:1rem; } .sync-pipeline li { grid-template-columns:1.7rem minmax(0,1fr) auto; font-size:.86rem; } }
 </style>
 </head>
 <body>
@@ -510,7 +523,14 @@ h2 { font-size: clamp(2.1rem, 5vw, 4rem); letter-spacing: -.055em; }
         <div class="projects">
 <article class="project neva-case" id="neva"><div class="project-body"><h3>Neva Kunstakademie</h3><p><strong>200+ neue Kundinnen und Kunden</strong> durch lokale Meta- und Google-Ads-Kampagnen.</p><p><strong>Ziel:</strong> Menschen in der Umgebung für die Angebote der Kunstakademie gewinnen.</p><p><strong>Mein Beitrag:</strong> Redaktionsplanung, Instagram-Content und lokale Performance-Kampagnen. Der Instagram-Kanal wuchs von null auf über 2.000 Follower.</p></div></article>
           <article class="project featured">
-            <div class="diagram" aria-hidden="true"><span>SHOP</span><i></i><span>API</span><i></i><span>ERP</span></div>
+            <figure class="sync-illustration" aria-labelledby="sync-title">
+  <figcaption><span class="sync-kicker">DATENFLUSS · BEISPIEL</span><strong id="sync-title">Bestandsabgleich</strong></figcaption>
+  <ol class="sync-pipeline">
+    <li><span class="sync-index" aria-hidden="true">01</span><div><strong>Warenwirtschaft</strong><small>Quelldaten · Lagerbestand</small></div><span class="sync-value"><b data-stock-view="warehouse">12</b> Stk.</span></li>
+    <li><span class="sync-index" aria-hidden="true">02</span><div><strong>REST API</strong><small>Überträgt die Bestandsänderung</small></div><span class="sync-value sync-state" data-stock-view="status">Bereit</span></li>
+    <li><span class="sync-index" aria-hidden="true">03</span><div><strong>Onlineshop</strong><small>Zielsystem · verfügbarer Bestand</small></div><span class="sync-value"><b data-stock-view="shop">12</b> Stk.</span></li>
+  </ol>
+</figure>
             <div class="project-body"><p class="eyebrow">Integration · In Arbeit</p><h3>Onlineshop × Warenwirtschaft</h3><p>Ein Onlineshop mit API-Anbindung an ein Warenwirtschaftssystem.</p><details><summary>Integration ansehen</summary><p>Die API bildet die Verbindung zwischen dem Shopsystem und dem System, das die Warenwirtschaft verwaltet.</p></details><div class="demo-controls" id="lager-demo"><p class="eyebrow">Demo mit Beispieldaten</p><p>Warenlager: <output id="lager-zahl">12</output> · Onlineshop: <output id="shop-zahl">12</output></p><button type="button" class="button" id="lager-aktion">Bestand aktualisieren</button><p id="lager-status" role="status">Beide Bestände sind synchron.</p></div></div>
           </article>
           <article class="project"><div class="project-body"><p class="eyebrow">Softwareentwicklung</p><h3>ERP für den Onlinehandel</h3><p>Eigenentwickeltes Frontend und Backend für Abläufe vom Lagerbestand bis zum Rechnungsversand.</p><details><summary>Funktionsumfang ansehen</summary><p>Die Oberfläche und das Backend decken zwei zentrale Aufgaben ab: Lagerbestände verwalten und Rechnungen versenden.</p></details></div></article>
@@ -698,12 +718,20 @@ updateScroll();
   const warehouse = document.querySelector('#lager-zahl');
   const shop = document.querySelector('#shop-zahl');
   const status = document.querySelector('#lager-status');
+  const diagram = document.querySelector('.sync-illustration');
+  const show = (key, value) => { diagram.querySelector('[data-stock-view="'+key+'"]').textContent = value; };
   button.addEventListener('click',() => {
     button.disabled = true;
     warehouse.value = Number(warehouse.value) === 12 ? 8 : 12;
+    diagram.dataset.sync = 'sending';
+    show('warehouse',warehouse.value);
+    show('status','Überträgt…');
     status.textContent = 'Warenlager → REST API: Bestandsänderung wird übertragen.';
     setTimeout(() => {
       shop.value = warehouse.value;
+      diagram.dataset.sync = 'done';
+      show('shop',shop.value);
+      show('status','✓ OK');
       status.textContent = 'REST API → Onlineshop: Bestand synchronisiert (' + shop.value + ' Stück).';
       button.disabled = false;
     },650);
