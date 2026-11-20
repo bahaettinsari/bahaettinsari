@@ -447,15 +447,25 @@ h2 { font-size: clamp(2.1rem, 5vw, 4rem); letter-spacing: -.055em; }
 .ad-report { padding:1rem; background:#102640; color:#e8f2ff; border-radius:.65rem; }
 .ad-report h4 { color:white; margin:0 0 .45rem; font-family:var(--display); }
 .ad-report p { margin:0; }
+
+.top-inner { min-height:4rem; }
+.top-inner a { display:inline-flex; align-items:center; min-height:44px; }
+.top-inner nav a { position:relative; }
+.top-inner a[aria-current="location"] { color:var(--accent); text-decoration:underline; text-decoration-thickness:2px; text-underline-offset:.4em; }
+@media(max-width:700px) {
+  .top-inner { padding-block:.15rem; column-gap:.65rem; row-gap:0; }
+  .top-inner nav { flex-wrap:nowrap; justify-content:space-between; gap:.45rem; }
+  .top-inner .contact-link { justify-self:end; }
+}
 </style>
 </head>
 <body>
   <a class="skip" href="#main">Zum Inhalt</a>
   <header class="top">
     <div class="shell top-inner">
-      <a class="brand" href="#start"><span>BS</span> Bahaettin Sari</a>
+      <a class="brand" href="#start">Bahaettin Sari</a>
       <nav aria-label="Hauptnavigation">
-        <a href="#projekte">Projekte</a><a href="#ki">KI</a><a href="#profil">Profil</a><a href="#erfahrung">Erfahrung</a><a href="#ausbildung">Ausbildung</a>
+        <a href="#projekte">Projekte</a><a href="#ki">KI-Demo</a><a href="#erfahrung">Erfahrung</a>
       </nav>
       <a class="contact-link" href="#kontakt">Kontakt</a>
     </div>
@@ -763,6 +773,36 @@ updateScroll();
       button.disabled = false;
     },650);
   });
+})();
+</script>
+<script>
+(() => {
+  const header = document.querySelector('.top');
+  const links = [...header.querySelectorAll('nav a, .contact-link')];
+  const sections = [...document.querySelectorAll('main .shell > section[id]')];
+  let scheduled = false;
+  function updateCurrent() {
+    scheduled = false;
+    const marker = header.getBoundingClientRect().bottom + 28;
+    const atEnd = Math.ceil(scrollY + innerHeight) >= document.documentElement.scrollHeight - 2;
+    const current = atEnd ? 'kontakt' : sections.find(section => {
+      const box = section.getBoundingClientRect();
+      return box.top <= marker && box.bottom > marker;
+    })?.id;
+    for (const link of links) {
+      if (link.hash === '#' + current) link.setAttribute('aria-current','location');
+      else link.removeAttribute('aria-current');
+    }
+  }
+  function schedule() {
+    if (scheduled) return;
+    scheduled = true;
+    requestAnimationFrame(updateCurrent);
+  }
+  addEventListener('scroll',schedule,{passive:true});
+  addEventListener('resize',schedule);
+  addEventListener('hashchange',schedule);
+  updateCurrent();
 })();
 </script>
 </body>
