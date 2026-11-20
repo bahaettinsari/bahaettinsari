@@ -359,6 +359,24 @@ h2 { font-size: clamp(2.1rem, 5vw, 4rem); letter-spacing: -.055em; }
 @media (max-width: 700px) {
   .has-story [data-scene] { opacity: clamp(0, calc(2 * var(--alpha, 1) - 1), 1); }
 }
+
+/* Blue and orange are paired with text labels and distinct shapes. */
+:root { --accent:#005a8c; --orange:#a13d00; --navy:#10364d; }
+.hero h1 .name-line:last-child,.story-copy h2 span { color:var(--accent); }
+.primary { color:#fff; background:var(--accent); border-color:var(--accent); }
+.primary:hover { background:var(--navy); box-shadow:0 8px 25px #10364d33; }
+.button:hover { border-color:var(--accent); }
+.progress,.flow-node i,.flow-node + .flow-node::before { background:var(--accent); }
+.panel-label,.campaign-network,.neva-channels span,.diagram { color:var(--accent); }
+.campaign-ad { background:var(--navy); color:#fff; }
+.campaign-ad-note { color:#dce9ef; }
+.neva-result { color:var(--orange); border-color:#bd793c; }
+.participant-journey i::after { background:var(--accent); }
+.flow-signal { background:#ffd59a; box-shadow:0 0 0 3px var(--orange); border-radius:2px; }
+.diagram { background:radial-gradient(ellipse,#d5e8ef,transparent 75%),#edf4f7; }
+.diagram span,.flow-node,.neva-channels span { background:#edf4f7; border-color:#8aabba; }
+.diagram i { background:var(--accent); }
+.contact { background:radial-gradient(ellipse at 15% 100%,#e2eff4 0,transparent 70%); }
 </style>
 </head>
 <body>
