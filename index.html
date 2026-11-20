@@ -403,6 +403,18 @@ h2 { font-size: clamp(2.1rem, 5vw, 4rem); letter-spacing: -.055em; }
 .stock-track::before { content:""; position:absolute; inset:0 auto 0 0; width:var(--stock-progress,0%); background:var(--orange); }
 .stock-track i { position:absolute; left:var(--stock-progress,0%); top:50%; width:.65rem; aspect-ratio:1; background:var(--orange); border:1px solid #ffffff; transform:translate(-50%,-50%) rotate(45deg); }
 #ki > p { max-width: 48rem; color: var(--muted); margin-bottom: 1.5rem; }
+
+.has-story .story { height:235svh; }
+.neva-case { grid-column:1/-1; scroll-margin-top:8rem; background:#edf4fc; }
+.neva-case p + p,.demo-controls p { margin-top:.6rem; }
+.demo-controls { margin:1rem 0; }
+.demo-controls button { margin-top:.5rem; cursor:pointer; }
+.ab-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.75rem; margin-top:.6rem; }
+.ab-grid fieldset { min-width:0; margin:0; border:1px solid var(--line); border-radius:.55rem; padding:.75rem; }
+.ab-grid label { display:block; margin-bottom:.5rem; }
+.ab-grid input { display:block; width:100%; max-width:10rem; padding:.4rem; font:inherit; border:1px solid #8096ad; border-radius:.3rem; }
+.ab-grid output { display:block; font-weight:600; }
+@media(max-width:480px) { .ab-grid { grid-template-columns:1fr; } }
 </style>
 </head>
 <body>
@@ -463,9 +475,9 @@ h2 { font-size: clamp(2.1rem, 5vw, 4rem); letter-spacing: -.055em; }
       <div class="shell hero-inner" data-scene>
         <p class="eyebrow">HESSEN · DEUTSCHLAND</p>
         <h1 id="name"><span class="name-line"><span>Bahaettin</span></span> <span class="name-line"><span>Sari</span></span></h1>
-        <p class="position">Digital Marketing &amp; E-Commerce</p>
-        <p class="intro">Ich entwickle Kampagnen für Social Media und verbinde Onlineshops über APIs mit Warenwirtschaft und Daten.</p>
-        <div class="actions"><a class="button primary" href="#projekte">Projekte ansehen</a></div>
+        <p class="position">Performance Marketing &amp; Marketing Automation</p>
+        <p class="intro">200+ neue Kundinnen und Kunden durch lokale Meta- und Google-Ads-Kampagnen. Dazu kommen E-Commerce-Integrationen und KI-gestützte Automatisierung.</p>
+        <div class="actions"><a class="button primary" href="#neva">Fallstudie ansehen</a><a class="button" href="#kontakt">Kontakt</a></div>
       </div>
       <div class="shell hero-inner story-copy" data-scene>
         <p class="eyebrow">Neva Kunstakademie · Ziel</p>
@@ -493,9 +505,10 @@ h2 { font-size: clamp(2.1rem, 5vw, 4rem); letter-spacing: -.055em; }
       <section class="section" id="projekte">
         <header class="section-heading"><h2>Ausgewählte Projekte</h2><p>Eigene Arbeiten in E-Commerce und Automatisierung.</p></header>
         <div class="projects">
+<article class="project neva-case" id="neva"><div class="project-body"><h3>Neva Kunstakademie</h3><p><strong>200+ neue Kundinnen und Kunden</strong> durch lokale Meta- und Google-Ads-Kampagnen.</p><p><strong>Ziel:</strong> Menschen in der Umgebung für die Angebote der Kunstakademie gewinnen.</p><p><strong>Mein Beitrag:</strong> Redaktionsplanung, Instagram-Content und lokale Performance-Kampagnen. Der Instagram-Kanal wuchs von null auf über 2.000 Follower.</p></div></article>
           <article class="project featured">
             <div class="diagram" aria-hidden="true"><span>SHOP</span><i></i><span>API</span><i></i><span>ERP</span></div>
-            <div class="project-body"><p class="eyebrow">Integration · In Arbeit</p><h3>Onlineshop × Warenwirtschaft</h3><p>Ein Onlineshop mit API-Anbindung an ein Warenwirtschaftssystem.</p><details><summary>Integration ansehen</summary><p>Die API bildet die Verbindung zwischen dem Shopsystem und dem System, das die Warenwirtschaft verwaltet.</p></details></div>
+            <div class="project-body"><p class="eyebrow">Integration · In Arbeit</p><h3>Onlineshop × Warenwirtschaft</h3><p>Ein Onlineshop mit API-Anbindung an ein Warenwirtschaftssystem.</p><details><summary>Integration ansehen</summary><p>Die API bildet die Verbindung zwischen dem Shopsystem und dem System, das die Warenwirtschaft verwaltet.</p></details><div class="demo-controls" id="lager-demo"><p class="eyebrow">Demo mit Beispieldaten</p><p>Warenlager: <output id="lager-zahl">12</output> · Onlineshop: <output id="shop-zahl">12</output></p><button type="button" class="button" id="lager-aktion">Bestand aktualisieren</button><p id="lager-status" role="status">Beide Bestände sind synchron.</p></div></div>
           </article>
           <article class="project"><div class="project-body"><p class="eyebrow">Softwareentwicklung</p><h3>ERP für den Onlinehandel</h3><p>Eigenentwickeltes Frontend und Backend für Abläufe vom Lagerbestand bis zum Rechnungsversand.</p><details><summary>Funktionsumfang ansehen</summary><p>Die Oberfläche und das Backend decken zwei zentrale Aufgaben ab: Lagerbestände verwalten und Rechnungen versenden.</p></details></div></article>
           <article class="project"><div class="project-body"><p class="eyebrow">Datenintegration</p><h3>Preisvergleich für den Einkauf</h3><p>Lieferanten-APIs liefern Einkaufspreise, die sich anhand von Barcodes vergleichen lassen.</p><details><summary>Ablauf ansehen</summary><p>Der Barcode dient als gemeinsamer Schlüssel, um Artikel über mehrere Lieferanten hinweg zuzuordnen und ihre Einkaufspreise gegenüberzustellen.</p></details></div></article>
@@ -509,7 +522,7 @@ h2 { font-size: clamp(2.1rem, 5vw, 4rem); letter-spacing: -.055em; }
             <p class="eyebrow">Demo mit Beispieldaten</p>
             <h3>Vom Anzeigenvergleich zum Testplan</h3>
             <p>Ein Beispiel dafür, wie ich KI-gestützte Analysen prüfe und in Entscheidungen übersetze.</p>
-            <details open><summary>1. Daten auswerten</summary><p>Anzeige A: 180 Klicks bei 12.000 Impressionen (1,5 %). Anzeige B: 240 Klicks bei 12.000 Impressionen (2,0 %). Ich prüfe die berechneten Klickraten und ob die Ausspielung vergleichbar war.</p></details>
+            <div class="demo-controls" id="anzeigen-demo"><p>Je 12.000 Impressionen. Ändere die Klicks und qualifizierten Anfragen.</p><div class="ab-grid"><fieldset data-ad><legend>Anzeige A</legend><label>Klicks <input type="number" min="0" max="12000" value="180" data-clicks></label><label>Qualifizierte Anfragen <input type="number" min="0" max="180" value="18" data-leads></label><output></output></fieldset><fieldset data-ad><legend>Anzeige B</legend><label>Klicks <input type="number" min="0" max="12000" value="240" data-clicks></label><label>Qualifizierte Anfragen <input type="number" min="0" max="240" value="12" data-leads></label><output></output></fieldset></div><p id="anzeigen-status" role="status"></p></div><details><summary>1. Daten auswerten</summary><p>Anzeige A: 180 Klicks bei 12.000 Impressionen (1,5 %). Anzeige B: 240 Klicks bei 12.000 Impressionen (2,0 %). Ich prüfe die berechneten Klickraten und ob die Ausspielung vergleichbar war.</p></details>
             <details><summary>2. Hypothese ableiten</summary><p>Eine konkrete Nutzenbotschaft könnte mehr qualifizierte Anfragen auslösen. Mit KI entwerfe ich Textvarianten und prüfe, ob sie zum Angebot und zur Marke passen.</p></details>
             <details><summary>3. A/B-Test vorbereiten</summary><p>Im nächsten Test ändere ich nur die Überschrift. Ich verteile die Zielgruppe zufällig auf beide Varianten und definiere die Kosten pro qualifizierter Anfrage als primäre Kennzahl.</p></details>
             <details><summary>4. Ergebnis berichten</summary><p>B hat im Beispiel die höhere Klickrate. Ohne Daten zu qualifizierten Anfragen bleibt offen, welche Variante günstiger Kundschaft gewinnt. Empfehlung: Budget erst nach dem geplanten Test umverteilen.</p></details>
@@ -519,15 +532,15 @@ h2 { font-size: clamp(2.1rem, 5vw, 4rem); letter-spacing: -.055em; }
       <section class="section profile" id="profil">
         <header class="section-heading"><h2>Profil</h2><p>Social Media, Performance-Marketing und technische Integration.</p></header>
         <div class="profile-layout">
-          <p>Ich bin Social-Media-Manager mit über fünf Jahren Praxiserfahrung in Content, Community-Aufbau und Performance-Marketing. In meiner Masterarbeit untersuche ich die Chancen und Herausforderungen generativer KI für SEO und Content-Marketing in deutschen Unternehmen.</p>
+          <p>Ich bin Social-Media-Manager mit über fünf Jahren Praxiserfahrung in Content, Community-Aufbau und Performance-Marketing.</p>
           <dl class="metrics"><div><dt>Jahre Social-Media-Erfahrung</dt><dd>5+</dd></div><div><dt>Gewonnene Neukundinnen und Neukunden</dt><dd>200+</dd></div><div><dt>Veröffentlichte Instagram-Beiträge</dt><dd>350+</dd></div></dl>
         </div>
       </section>
       <section class="section" id="erfahrung">
     <header class="section-heading"><h2>Erfahrung</h2><p>Berufliche Stationen in Marketing, Produkt und Verwaltung.</p></header>
     <div class="timeline"><article class="entry"><div class="date">04/2021 — 12/2026</div><div><h3>Social-Media-Manager · Neva Kunstakademie</h3><p>Strategie, Redaktionsplanung, Content und Performance-Kampagnen. Instagram-Kanal von null auf über 2.000 Follower aufgebaut; mit lokalen Meta- und Google-Ads-Kampagnen mehr als 200 neue Kundinnen und Kunden gewonnen.</p></div></article>
-<article class="entry"><div class="date">07/2026 — 12/2026</div><div><h3>Anprobemodel (Teilzeit) · ABOUT YOU</h3><p>Qualitäts- und Passformprüfung in Zusammenarbeit mit Design und Produktentwicklung in Berlin.</p></div></article>
-<article class="entry"><div class="date">08/2023 — 09/2023</div><div><h3>Praktikum · Türkische Finanzverwaltung</h3><p>Unterstützung der Verfahrensdirektion im nationalen Praktikumsprogramm.</p></div></article></div>
+<article class="entry"><div class="date">07/2026 — 12/2026</div><div><h3>Anprobemodel (Teilzeit) · ABOUT YOU</h3></div></article>
+<article class="entry"><div class="date">08/2023 — 09/2023</div><div><h3>Praktikum · Türkische Finanzverwaltung</h3></div></article></div>
   </section>
       <section class="section" id="ausbildung">
     <header class="section-heading"><h2>Ausbildung</h2><p>Studium und Forschung in Digital Marketing und Politikwissenschaft.</p></header>
@@ -655,6 +668,43 @@ updateScroll();
   addEventListener('resize',resize,{passive:true});
   motion.addEventListener('change',resize);
   resize();
+})();
+</script>
+<script>
+(() => {
+  const demo = document.querySelector('#anzeigen-demo');
+  const cards = [...demo.querySelectorAll('[data-ad]')];
+  const percent = new Intl.NumberFormat('de-DE', {style:'percent',maximumFractionDigits:2});
+  function updateAds() {
+    const values = cards.map(card => {
+      const clicks = card.querySelector('[data-clicks]');
+      const leads = card.querySelector('[data-leads]');
+      const c = Math.min(12000,Math.max(0,Math.trunc(Number(clicks.value))));
+      const l = Math.min(c,Math.max(0,Math.trunc(Number(leads.value))));
+      leads.max = c;
+      if (Number(leads.value) > c) leads.value = c;
+      card.querySelector('output').value = 'Klickrate: ' + percent.format(c/12000) + ' · Anfragen pro Klick: ' + (c ? percent.format(l/c) : '–');
+      return {clicks:c,leads:l};
+    });
+    const best = key => values[0][key] === values[1][key] ? 'Gleichstand' : values[0][key] > values[1][key] ? 'Anzeige A' : 'Anzeige B';
+    document.querySelector('#anzeigen-status').textContent = 'Mehr Klicks: ' + best('clicks') + '. Mehr qualifizierte Anfragen: ' + best('leads') + '.';
+  }
+  demo.addEventListener('input',updateAds);
+  updateAds();
+  const button = document.querySelector('#lager-aktion');
+  const warehouse = document.querySelector('#lager-zahl');
+  const shop = document.querySelector('#shop-zahl');
+  const status = document.querySelector('#lager-status');
+  button.addEventListener('click',() => {
+    button.disabled = true;
+    warehouse.value = Number(warehouse.value) === 12 ? 8 : 12;
+    status.textContent = 'Warenlager → REST API: Bestandsänderung wird übertragen.';
+    setTimeout(() => {
+      shop.value = warehouse.value;
+      status.textContent = 'REST API → Onlineshop: Bestand synchronisiert (' + shop.value + ' Stück).';
+      button.disabled = false;
+    },650);
+  });
 })();
 </script>
 </body>
